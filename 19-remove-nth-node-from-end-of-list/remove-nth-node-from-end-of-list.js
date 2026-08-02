@@ -11,25 +11,20 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function(head, n) {
-   // Calculating length 
-   let size = 0;
-   let currNode = head;
+    let dummy = new ListNode;
+    dummy.next = head;
 
-   while(currNode !== null){
-    size++;
-    currNode = currNode.next;
-   }
+    let first = dummy;
+    let second = dummy;
 
-// Creating Sentinel node
-let sentinel = new ListNode()
-sentinel.next = head;
-
-     let curr = sentinel;
-    for(let i = 0 ; i < size - n ; i++){
-    curr = curr.next;
+    for(let i = 0 ; i <= n ; i++){
+        first = first.next;
     }
-
-    curr.next = curr.next.next;
-    return sentinel.next;
-
+   
+    while(first !== null){
+        first = first.next;
+        second = second.next;
+    }
+    second.next = second.next.next;
+    return dummy.next;
 };
