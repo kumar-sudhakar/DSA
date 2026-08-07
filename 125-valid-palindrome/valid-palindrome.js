@@ -3,29 +3,26 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    let left = 0;
-    let right = s.length - 1;
+    
+    let newStr = s.toLowerCase();
+    let i = 0;
+    let j = newStr.length -1 ;
 
-    while (left < right) {
-
-        // Skip non-alphanumeric characters from the left
-        while (left < right && !/[a-z0-9]/i.test(s[left])) {
-            left++;
+    while(i < j){
+        if(!/[a-z0-9]/.test(newStr[i])){
+            i++;
         }
-
-        // Skip non-alphanumeric characters from the right
-        while (left < right && !/[a-z0-9]/i.test(s[right])) {
-            right--;
+         else if(!/[a-z0-9]/.test(newStr[j])){
+            j--;
         }
-
-        // Compare characters (case-insensitive)
-        if (s[left].toLowerCase() !== s[right].toLowerCase()) {
-            return false;
+        else if(newStr[i] === newStr[j]){
+            i++;
+            j--;
         }
-
-        left++;
-        right--;
+        else{
+           return false;
+            }
     }
-
     return true;
+
 };
