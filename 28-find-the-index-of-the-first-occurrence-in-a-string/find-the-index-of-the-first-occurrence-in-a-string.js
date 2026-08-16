@@ -5,11 +5,18 @@
  */
 var strStr = function(haystack, needle) {
     let windowSize = needle.length;
-    for(let left = 0 ; left <= haystack.length - windowSize ; left++){
-        let window = haystack.slice(left ,left + windowSize);
-        if(window === needle){
-            return left;
+    
+    for(let i = 0 ; i <= haystack.length - windowSize ; i++){
+      let count = true;
+      for(let j = 0 ; j < windowSize; j++){
+        if(haystack[i+j] !== needle[j]){
+            count = false;
+            break;
         }
-    } 
+      }
+      if(count){
+        return i;
+      }
+    }
     return -1;
 };
