@@ -10,22 +10,20 @@
  * @return {ListNode}
  */
 var oddEvenList = function(head) {
-
-    if( head == null || head === 1){
-        return head;
-    }
     
+    if(head === null || head.next === null) return head;
+
     let odd = head;
     let even = head.next;
-    let evenStart = even;
+    let evenP = even;
 
-    while(odd.next!== null && even.next !== null){
-        odd.next = odd.next.next;
-        even.next = even.next.next;
-        odd = odd.next;
+    while(even !== null && even.next !== null){
+        odd.next = even.next;
+        odd = odd.next
+
+        even.next = odd.next;
         even = even.next;
     }
-   odd.next = evenStart;
-
+    odd.next = evenP;
     return head;
 };
