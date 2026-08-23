@@ -9,48 +9,43 @@
  * @param {ListNode} head
  * @return {boolean}
  */
-var isPalindrome = function(head) {
-   
-// find middle
-let mid = head;
-let fast = head;
+var isPalindrome = function (head) {
 
-if(fast === null){
-    mid = fast.next;
-}
+    // finding middle
+    let fast = head;
+    let slow = head;
 
-while(fast !== null && fast.next !== null){
-    mid = mid.next;
-    fast = fast.next.next;
-}
+    while (fast !== null && fast.next !== null) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
 
+    // reverse second half
+    let prev = null
+    let curr = slow;
 
-  // reverse second half
-  let prev = null;
-  let curr = mid;
-  
+    while (curr !== null) {
+        let temp = curr.next;
+        curr.next = prev;
 
-  while(curr !== null ){
+        prev = curr;
+        curr = temp;
 
-    let temp = curr.next;
-    curr.next = prev;
-    prev = curr;
-    curr = temp;
-  }
+    }
 
-  // compare
+    //compair both sides
+    let first = head;
+    let second = prev;
 
-  let nodeA = head;
-  let nodeB = prev;
+    while (second !== null) {
 
-  while(nodeB !== null){
-  if(nodeA.val !== nodeB.val){
-    return false;
-  }
-  nodeA = nodeA.next;
-  nodeB = nodeB.next;
-  }
+        if (first.val !== second.val) {
+            return false;
+        }
+        first = first.next;
+        second = second.next;
 
+    }
+    return true;
 
-return true;
 };
