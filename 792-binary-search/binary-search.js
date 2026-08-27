@@ -4,18 +4,21 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    let left = 0;
-    let right = nums.length-1;
+    let left = 0
+    let n = nums.length;
+    let right = n-1;
 
     while(left <= right ){
-        let middle = Math.floor((left+right)/2)
-        if(nums[middle] === target) return middle;
-        else if(target > nums[middle]){
-            left =  middle + 1;
-        }
-        else{
-            right = middle - 1;
-        }
+     let mid = Math.floor((left + right )/2);
+     if(target === nums[mid]){
+        return mid;
+     }
+     else if(target < nums[mid]){
+        right = mid - 1;
+     }
+     else{
+        left = mid + 1;
+     }
     }
     return -1;
 };
