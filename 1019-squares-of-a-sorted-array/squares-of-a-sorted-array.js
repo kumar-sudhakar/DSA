@@ -2,11 +2,11 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-var sortedSquares = function(nums) {
-     let arr = [];
-    for(let i = 0 ; i< nums.length ; i++){
-        arr.push(nums[i] * nums[i]);
-    }
+var sortedSquares = function (nums) {
 
-    return arr.sort((a,b)=>a-b);
+    let answer = [];
+    for (let i = 0; i < nums.length; i++) {
+        answer.push(nums[i] * nums[i]);
+    }
+    return answer.sort((a, b) => a - b)
 };
