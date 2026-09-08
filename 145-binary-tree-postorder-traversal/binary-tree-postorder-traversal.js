@@ -11,15 +11,23 @@
  * @return {number[]}
  */
 var postorderTraversal = function (root) {
-    let answer = [];
+    if (!root) return [];
 
-    function postOrderTraverse(curr) {
-        if(!curr) return;
+    let stack1 = [root];
+    let stack2 = [];
 
-        postOrderTraverse(curr.left);
-        postOrderTraverse(curr.right);
-        answer.push(curr.val)
+    while (stack1.length) {
+        let curr = stack1.pop();
+        stack2.push(curr)
+
+        curr.left && stack1.push(curr.left);
+        curr.right && stack1.push(curr.right);
     }
-    postOrderTraverse(root);
-    return answer;
+
+    let ans = [];
+    while (stack2.length) {
+        num = stack2.pop();
+        ans.push(num.val)
+    }
+    return ans;
 };
