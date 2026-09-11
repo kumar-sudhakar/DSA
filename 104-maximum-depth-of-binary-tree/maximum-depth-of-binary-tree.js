@@ -12,14 +12,13 @@
  */
 var maxDepth = function (root) {
     if (!root) return 0;
-    let maxDepth = 0;
 
-    function findDepth(curr, currDepth) {
-        maxDepth = Math.max(maxDepth, currDepth);
-        curr.left && findDepth(curr.left, currDepth + 1);
-        curr.right && findDepth(curr.right, currDepth + 1);
+    function findDepth(curr) {
+        if (!curr) return 0;
 
+        let leftDepth = findDepth(curr.left);
+        let rightDepth = findDepth(curr.right);
+        return 1 + Math.max(leftDepth , rightDepth);
     }
-    findDepth(root, 1);
-    return maxDepth;
+    return findDepth(root);
 };
