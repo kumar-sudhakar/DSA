@@ -11,19 +11,19 @@
  * @return {boolean}
  */
 var isSymmetric = function (root) {
-    if (!root) return true;
+    q = [root.left, root.right];
 
-    function isMirror(left, right) {
+    while (q.length) {
+        let leftChild = q.shift();
+        let rightChild = q.shift();
 
-        if (!left && !right) return true;
-        if (!left || !right) return false;
+        if (!leftChild && !rightChild) continue;
+        if (!leftChild || !rightChild) return false;
+        if (leftChild.val !== rightChild.val) return false;
 
-        if (left.val !== right.val) return false;
-
-        return isMirror(left.left, right.right) &&
-            isMirror(left.right, right.left);
-
+        q.push(leftChild.left, rightChild.right);
+        q.push(leftChild.right, rightChild.left);
     }
 
-    return isMirror(root.left, root.right);
+    return true;
 };
