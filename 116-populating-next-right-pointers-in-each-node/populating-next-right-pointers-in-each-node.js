@@ -14,7 +14,8 @@
  */
 var connect = function (root) {
     if (!root) return root;
-    function populatePointer(curr) {
+
+    function populateNodes(curr) {
         if (curr.left) {
             curr.left.next = curr.right;
         }
@@ -22,10 +23,10 @@ var connect = function (root) {
         if (curr.right && curr.next) {
             curr.right.next = curr.next.left;
         }
-        curr.left && populatePointer(curr.left);
-        curr.right && populatePointer(curr.right);
-    }
-    populatePointer(root);
-    return root;
 
+        curr.left && populateNodes(curr.left);
+        curr.right && populateNodes(curr.right);
+    }
+    populateNodes(root);
+    return root;
 };
