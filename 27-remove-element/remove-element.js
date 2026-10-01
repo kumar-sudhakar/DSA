@@ -3,13 +3,13 @@
  * @param {number} val
  * @return {number}
  */
-var removeElement = function(nums, val) {
-    let j =0;
+var removeElement = function (nums, val) {
+    let j = 0;
 
-    for(let i=0 ; i< nums.length ; i++){
-        if(nums[i] != val){
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] != val) {
             nums[j] = nums[i]
-            j = j +1;
+            j = j + 1;
         }
     }
     return j;
