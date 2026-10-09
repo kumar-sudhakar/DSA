@@ -3,32 +3,21 @@
  * @param {number} k
  * @return {number[]}
  */
+var topKFrequent = function (arr, k) {
 
-var topKFrequent = function(nums, k) {
-    let map = new Map();
-
-    // Count frequency
-    for (let num of nums) {
-        map.set(num, (map.get(num) || 0) + 1);
+    let map = {};
+    for (let i = 0; i < arr.length; i++) {
+        if (!map[arr[i]]) map[arr[i]] = 0;
+        ++map[arr[i]];
     }
 
-    // Create buckets
-    let bucket = Array.from({ length: nums.length + 1 }, () => []);
-
-    for (let [num, freq] of map) {
-        bucket[freq].push(num);
-    }
-
-    // Get top k frequent elements
-    let answer = [];
-
-    for (let i = bucket.length - 1; i >= 0; i--) {
-        for (let num of bucket[i]) {
-            answer.push(num);
-
-            if (answer.length === k) {
-                return answer;
-            }
+    let pq = new MinPriorityQueue(x => x.freq);
+    for (key in map) {
+        pq.push({ val: key, freq: map[key] })
+        if (pq.size() > k) {
+            pq.pop();
         }
     }
+
+    return pq.toArray().map(x => Number(x.val))
 };
